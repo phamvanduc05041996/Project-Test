@@ -20,7 +20,7 @@ const App = () => {
         <button onClick={() => dispatch(decreaseCounter())}>Decrease</button>
       </header>
     </div>
-  );
+  )
 }
 
 export default App;

@@ -4,7 +4,7 @@ class MyComponent extends React.Component {
 
     render() {
         return (
-            <div>my first component</div>
+            <div>my second component</div>
         )
 
     }
