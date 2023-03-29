@@ -9,21 +9,21 @@ const App = () => {
   const dispatch = useDispatch();
 
   return ( 
-    <div>
-      Hello World
-      <MyComponent />
-    </div>
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Hello world
-    //     </p>
-    //     <div>Count = {count}</div>
-    //     <button onClick={() => dispatch(increaseCounter())}>Increase</button>
-    //     <button onClick={() => dispatch(decreaseCounter())}>Decrease</button>
-    //   </header>
+    // <div>
+    //   Hello World
+    //   <MyComponent />
     // </div>
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Hello world
+        </p>
+        <div>Count = {count}</div>
+        <button onClick={() => dispatch(increaseCounter())}>Increase</button>
+        <button onClick={() => dispatch(decreaseCounter())}>Decrease</button>
+      </header>
+    </div>
   );
 }
 
