@@ -10,13 +10,22 @@
         width: 100%;
         .admin-header{
             height: 40px;
-            border: 1px solid green;
+            // border: 1px solid green;
 
         }
 
         .admin-main{
-            
-        }
+            .manage-user-container{
+                margin-left: 5px;
+                
+                .user-pagination{
+                    display: flex;
+                    justify-content: center;
+                }
+            }
+
+            }
+         
 
     }
 }
