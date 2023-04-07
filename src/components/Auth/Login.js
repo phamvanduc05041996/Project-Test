@@ -6,25 +6,47 @@ import { postLogin } from "../../services/apiService";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { doLogin } from "../../redux/action/userAction";
+import { ImSpinner10 } from "react-icons/im";
 
 const Login = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const validateEmail = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      );
+  };
 
   const handleSubmit = async () => {
     //validate
-    //submit API
+    const isValidEmail = validateEmail(email);
+    if (!isValidEmail) {
+      toast.error("Invalid email");
+      return;
+    }
 
+    if (!password) {
+      toast.error("Invalid password");
+      return;
+    }
+    //submit API
+    setIsLoading(true);
     let data = await postLogin(email, password);
     if (data && data.EC === 0) {
       dispatch(doLogin(data));
       toast.success(data.EM);
+      setIsLoading(false);
       navigate("/");
     }
     if (data && +data.EC !== 0) {
       toast.error(data.EM);
+      setIsLoading(false);
     }
   };
   return (
@@ -60,8 +82,13 @@ const Login = (props) => {
           <span className="forgot-password">Forgot password ?</span>
           <div>
             {" "}
-            <button className="btn-submit" onClick={() => handleSubmit()}>
-              Login to Quizz
+            <button
+              className="btn-submit"
+              onClick={() => handleSubmit()}
+              disabled={isLoading}
+            >
+              {isLoading === true && <ImSpinner10 className="loader-icon" />}
+              <span> Login to Quizz </span>
             </button>
           </div>
 
