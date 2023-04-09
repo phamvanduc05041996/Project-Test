@@ -1,5 +1,6 @@
 import React from "react";
 import axios from "../utils/axiosCustomize";
+
 const postCreateNewUser = (email, password, username, role, image) => {
   const data = new FormData();
   data.append("email", email);
@@ -46,6 +47,14 @@ const postRegister = (email, password, username) => {
     username: username,
   });
 };
+
+const getQuizByUser = () => {
+  return axios.get("/api/v1/quiz-by-participant");
+};
+
+const getDataQuiz = (id) => {
+  return axios.get(`/api/v1/questions-by-quiz?quizId=${id}`);
+};
 export {
   postCreateNewUser,
   getAllUsers,
@@ -54,4 +63,6 @@ export {
   getUserWithPaginate,
   postLogin,
   postRegister,
+  getQuizByUser,
+  getDataQuiz,
 };
